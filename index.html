@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PookiePixel Studio 🌸✨ — Cozy Productivity SaaS Suite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #fff2f6;
+      --card-bg: #ffffff;
+      --primary: #ff85a2;
+      --primary-hover: #ff5c83;
+      --accent: #f7aef8;
+      --text-main: #6b4355;
+      --text-muted: #b58299;
+      --border-color: #ffd0dc;
+      --shadow-pink: rgba(255, 133, 162, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-color);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ffb8ca;
+      border-radius: 10px;
+      border: 2px solid var(--bg-color);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-image: 
+        radial-gradient(#ffccd8 2px, transparent 2px), 
+        radial-gradient(#ffccd8 2px, #fff2f6 2px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+      color: var(--text-main);
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-y: scroll;
+      animation: bgPulse 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgPulse {
+      0% { background-color: #fff2f6; }
+      50% { background-color: #fff0f8; }
+      100% { background-color: #fff5f2; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(-5deg); }
+      50% { transform: translateY(-10px) rotate(3deg); }
+      100% { transform: translateY(-18px) rotate(8deg); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(255, 133, 162, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 133, 162, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 133, 162, 0); }
+    }
+
+    @keyframes badgeBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Floating Background Stickers */
+    .floating-decor {
+      position: absolute;
+      font-size: 2.4rem;
+      user-select: none;
+      animation: float 5s ease-in-out infinite alternate;
+      z-index: 0;
+      opacity: 0.85;
+      filter: drop-shadow(0 4px 6px rgba(255, 133, 162, 0.2));
+      transition: transform 0.3s ease;
+    }
+    .floating-decor:hover { transform: scale(1.3) rotate(15deg); }
+    .decor-1 { top: -20px; left: -25px; animation-delay: 0s; }
+    .decor-2 { top: -20px; right: -25px; animation-delay: 1.2s; }
+    .decor-3 { bottom: 220px; left: -30px; animation-delay: 2.4s; }
+    .decor-4 { bottom: 250px; right: -30px; animation-delay: 1.8s; }
+
+    /* Header & Hero Area */
+    header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .branding-badge {
+      display: inline-block;
+      background: #ffffff;
+      color: var(--primary);
+      padding: 0.5rem 1.4rem;
+      border-radius: 20px;
+      border: 2px solid var(--border-color);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 12px rgba(255, 133, 162, 0.2);
+      margin-bottom: 1.2rem;
+      animation: badgeBounce 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Fredoka', cursive;
+      color: #ff5c83;
+      font-size: 3.6rem;
+      text-shadow: 3px 3px 0px #ffffff, 6px 6px 0px #ffcad4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text {
+      font-size: 1.25rem;
+      color: var(--text-main);
+      max-width: 700px;
+      margin: 0 auto 1.8rem auto;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary-lg {
+      background: linear-gradient(135deg, #ff85a2 0%, #ff5c83 100%);
+      color: white;
+      border: none;
+      padding: 0.95rem 2.2rem;
+      border-radius: 25px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.15rem;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(255, 92, 131, 0.35);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    .btn-primary-lg:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(255, 92, 131, 0.45);
+    }
+
+    .btn-secondary-lg {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 2px solid var(--border-color);
+      padding: 0.95rem 2.2rem;
+      border-radius: 25px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .btn-secondary-lg:hover {
+      background: var(--bg-color);
+      border-color: var(--primary);
+      transform: translateY(-4px) scale(1.03);
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border: 2px solid var(--border-color);
+      border-radius: 22px;
+      padding: 1.4rem 1rem;
+      margin-bottom: 3.5rem;
+      box-shadow: 0 8px 20px rgba(255, 133, 162, 0.12);
+      flex-wrap: wrap;
+      gap: 1rem;
+      animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stat-item {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover { transform: translateY(-3px) scale(1.05); }
+
+    .stat-number {
+      font-family: 'Fredoka', cursive;
+      font-size: 2rem;
+      color: #ff5c83;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Glassy About Section */
+    .about-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      padding: 2.2rem;
+      border-radius: 28px;
+      border: 3px solid #ffffff;
+      box-shadow: 0 12px 30px rgba(255, 133, 162, 0.15);
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 35px rgba(255, 133, 162, 0.22);
+    }
+
+    .about-card h2 {
+      font-family: 'Fredoka', cursive;
+      color: #4a2835;
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-card p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #5c3d46;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Fredoka', cursive;
+      font-size: 2.2rem;
+      color: #ff5c83;
+      text-shadow: 2px 2px 0px #ffffff;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-header p {
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-card {
+      background-color: #ffe5ec;
+      padding: 1.6rem;
+      border-radius: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px) rotate(1.5deg) scale(1.02);
+      box-shadow: 0 16px 32px rgba(255, 133, 162, 0.3);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 4px;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      transition: width 0.3s ease;
+    }
+
+    .product-card:hover::before {
+      width: 75px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .product-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+      display: block;
+      text-align: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .product-card:hover .product-icon {
+      transform: scale(1.25) rotate(-8deg);
+    }
+
+    .product-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.35rem;
+      color: #4a2835;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .product-desc {
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: #5c3d46;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn-launch {
+      background: #ffffff;
+      color: var(--primary);
+      border: 2px solid var(--border-color);
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      font-family: 'Fredoka', cursive;
+      font-size: 0.95rem;
+      text-align: center;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+    }
+
+    .product-card:hover .btn-launch {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(255, 92, 131, 0.3);
+    }
+
+    .product-card.coming-soon {
+      opacity: 0.85;
+      border-style: dashed;
+    }
+
+    .product-card.coming-soon:hover {
+      transform: translateY(-4px) rotate(0deg);
+    }
+
+    .product-card.coming-soon .btn-launch {
+      background: transparent;
+      color: var(--text-muted);
+      border-style: dashed;
+    }
+
+    /* DE-EMPHASIZED PRICING SECTION DESIGN */
+    .pricing-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+      align-items: center;
+    }
+
+    /* Primary Supporter Tier - Huge & High Focus */
+    .pricing-card.featured {
+      background: linear-gradient(180deg, #ffffff 0%, #fff7f9 100%);
+      border: 3px solid #ff5c83;
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 16px 40px rgba(255, 92, 131, 0.28);
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 22px 48px rgba(255, 92, 131, 0.38);
+    }
+
+    /* Free Tier - De-emphasized, Muted, Subdued */
+    .pricing-card.de-emphasized {
+      background: rgba(255, 255, 255, 0.6);
+      border: 2px dashed #ffb8ca;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      opacity: 0.78;
+      transition: all 0.3s ease;
+      filter: grayscale(15%);
+    }
+
+    .pricing-card.de-emphasized:hover {
+      opacity: 1;
+      filter: grayscale(0%);
+      background: #ffffff;
+      border-style: solid;
+      transform: translateY(-4px);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -16px;
+      right: 24px;
+      background: linear-gradient(135deg, #ff85a2 0%, #ff5c83 100%);
+      color: #ffffff;
+      font-family: 'Fredoka', cursive;
+      font-size: 0.85rem;
+      padding: 0.35rem 1.1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(255, 92, 131, 0.35);
+      animation: badgeBounce 2.5s ease-in-out infinite;
+    }
+
+    .pricing-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.6rem;
+      color: #4a2835;
+      margin-bottom: 0.4rem;
+    }
+
+    .pricing-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .price-tag {
+      font-family: 'Fredoka', cursive;
+      font-size: 3rem;
+      color: #ff5c83;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+
+    .price-tag span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #5c3d46;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-plan {
+      width: 100%;
+      padding: 0.95rem;
+      border-radius: 20px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.05rem;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-block;
+      border: none;
+    }
+
+    .btn-plan-free {
+      background: transparent;
+      color: var(--text-muted);
+      border: 2px dashed var(--border-color);
+      font-size: 0.92rem;
+    }
+
+    .btn-plan-free:hover {
+      background: #ffe5ec;
+      color: var(--text-main);
+      border-style: solid;
+    }
+
+    .btn-plan-paid {
+      background: linear-gradient(135deg, #ff85a2 0%, #ff5c83 100%);
+      color: white;
+      box-shadow: 0 6px 18px rgba(255, 92, 131, 0.35);
+    }
+
+    .btn-plan-paid:hover {
+      box-shadow: 0 8px 25px rgba(255, 92, 131, 0.45);
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    /* CONVERSION MODAL POPUP */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(107, 67, 85, 0.45);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border: 3px solid #ff5c83;
+      border-radius: 28px;
+      padding: 2.2rem;
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(255, 92, 131, 0.35);
+      animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.6rem;
+      color: #ff5c83;
+      margin-bottom: 0.6rem;
+    }
+
+    .modal-desc {
+      font-size: 0.98rem;
+      color: #5c3d46;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .btn-modal-upgrade {
+      background: linear-gradient(135deg, #ff85a2 0%, #ff5c83 100%);
+      color: white;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.1rem;
+      padding: 0.9rem;
+      border-radius: 20px;
+      border: none;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(255, 92, 131, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-modal-upgrade:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 92, 131, 0.45);
+    }
+
+    .btn-modal-free {
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+
+    .btn-modal-free:hover {
+      color: var(--text-main);
+    }
+
+    /* Expandable Accordion FAQ Section */
+    .faq-container {
+      margin-bottom: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(255, 133, 162, 0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover { border-color: var(--primary); }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 1.2rem 1.5rem;
+      font-family: 'Fredoka', cursive;
+      font-size: 1.15rem;
+      color: #4a2835;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      transition: color 0.2s ease;
+    }
+
+    .faq-question:hover { color: #ff5c83; }
+
+    .faq-icon {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+    .faq-answer-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+    }
+
+    .faq-item.active .faq-answer-wrapper {
+      max-height: 300px;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.4rem 1.5rem;
+      font-size: 0.98rem;
+      color: #5c3d46;
+      line-height: 1.6;
+      font-weight: 700;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 1rem;
+    }
+
+    /* Newsletter Box */
+    .newsletter-card {
+      background: linear-gradient(135deg, #ffe5ec 0%, #f3c4fb 100%);
+      border-radius: 28px;
+      padding: 2.2rem;
+      text-align: center;
+      border: 3px solid #ffffff;
+      box-shadow: 0 12px 30px rgba(255, 133, 162, 0.2);
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .newsletter-card:hover { transform: translateY(-3px); }
+
+    .newsletter-card h3 {
+      font-family: 'Fredoka', cursive;
+      font-size: 1.8rem;
+      color: #ff5c83;
+      margin-bottom: 0.5rem;
+    }
+
+    .newsletter-card p {
+      font-size: 0.98rem;
+      color: var(--text-main);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.8rem;
+      max-width: 450px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 220px;
+      border: 2px solid var(--border-color);
+      border-radius: 20px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.95rem;
+      outline: none;
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .newsletter-form input:focus {
+      border-color: #ff5c83;
+      box-shadow: 0 0 0 4px rgba(255, 133, 162, 0.25);
+    }
+
+    .btn-subscribe {
+      background: linear-gradient(135deg, #ff85a2 0%, #ff5c83 100%);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 20px;
+      font-family: 'Fredoka', cursive;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 92, 131, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .btn-subscribe:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 18px rgba(255, 92, 131, 0.45);
+    }
+
+    /* Enhanced Footer */
+    footer {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-color);
+      border-radius: 24px;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 6px 20px rgba(255, 133, 162, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    footer:hover { transform: translateY(-2px); }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .footer-links a:hover {
+      color: #ff5c83;
+      transform: translateY(-2px);
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      line-height: 1.6;
+      border-top: 2px dashed var(--border-color);
+      padding-top: 1rem;
+    }
+
+    .footer-copy a {
+      color: #ff5c83;
+      text-decoration: none;
+      font-weight: 800;
+      transition: color 0.2s ease;
+    }
+
+    .footer-copy a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Floating Background Decor -->
+    <div class="floating-decor decor-1">🌸</div>
+    <div class="floating-decor decor-2">✨</div>
+    <div class="floating-decor decor-3">🎀</div>
+    <div class="floating-decor decor-4">🍓</div>
+
+    <!-- Header / Hero Section -->
+    <header>
+      <div class="branding-badge">✨ All-in-One Cozy SaaS Suite</div>
+      <h1><span>🌸</span> PookiePixel Studio <span>🎀</span></h1>
+      <p class="hero-text">
+        Delightful, distraction-free web tools designed to make your daily productivity, planning, and mental wellness cozy and effortlessly fun.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#suite" class="btn-primary-lg">Explore Apps 🚀</a>
+        <a href="#pricing" class="btn-secondary-lg">View Pricing 💖</a>
+      </div>
+    </header>
+
+    <!-- Social Proof / Live Stats -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">Cozy Apps</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Cute Guaranteed</div>
+      </div>
+    </div>
+
+    <!-- SaaS Value Proposition -->
+    <div class="about-card">
+      <h2>Everyday productivity doesn't have to feel like work! 💕</h2>
+      <p>
+        PookiePixel Studio turns your routine into a calm, aesthetic experience. Access an interconnected suite of light-weight, cloud-synced productivity software built with care, privacy, and simplicity at its core.
+      </p>
+    </div>
+
+    <!-- Products Section -->
+    <div class="section-header" id="suite">
+      <h2>The Productivity Suite 🛍️</h2>
+      <p>Instant access to all apps with a single account.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Pookie Notes -->
+      <a href="https://couplenotes.netlify.app" target="_blank" class="product-card" style="background-color: #ffe5ec;">
+        <div>
+          <span class="product-icon">📝</span>
+          <div class="product-title">Pookie Notes - Couples edition</div>
+          <div class="product-desc">Write down secret thoughts, soft reminders & cute ideas with your partner.</div>
+        </div>
+        <div class="btn-launch">Launch App <span>✨</span></div>
+      </a>
+
+      <!-- Pookie Tasks -->
+      <a href="https://pookienonymous.netlify.app" target="_blank" class="product-card" style="background-color: #e2f0cb;">
+        <div>
+          <span class="product-icon">✅</span>
+          <div class="product-title">Pookienonymous</div>
+          <div class="product-desc">make your link, share it everywhere, and let people send you whatever's on their mind !</div>
+        </div>
+        <div class="btn-launch">Launch App <span>✨</span></div>
+      </a>
+
+      <!-- Coming Soon Card -->
+      <div class="product-card coming-soon" style="background-color: #f5e6fa;">
+        <div>
+          <span class="product-icon">💖</span>
+          <div class="product-title">And More...</div>
+          <div class="product-desc">New adorable tools for budgeting, mood tracking, and beyond!</div>
+        </div>
+        <div class="btn-launch">In Development 🎀</div>
+      </div>
+
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="section-header" id="pricing">
+      <h2>Support Our Studio 💖</h2>
+      <p>Help us build cozy independent software!</p>
+    </div>
+
+    <div class="pricing-container">
+      
+      <!-- Supporter Tier (Featured First & Prominently) -->
+      <div class="pricing-card featured">
+        <div class="popular-badge">Recommended 💖</div>
+        <div>
+          <div class="pricing-title">Pookie Supporter</div>
+          <div class="pricing-subtitle">Support indie dev & keep the servers cute and cozy</div>
+          <div class="price-tag">$1 <span>/ one-time support</span></div>
+          <ul class="pricing-features">
+            <li>✨ Everything in Free Tier</li>
+            <li>✨ <strong>Priority Developer Support</strong></li>
+            <li>✨ Early access to upcoming apps</li>
+            <li>✨ Supporter badge & extra cute perks</li>
+            <li>✨ Directly powers future updates</li>
+          </ul>
+        </div>
+        <a href="https://supportkori/tajimz" target="_blank" class="btn-plan btn-plan-paid">Support for $1 💖</a>
+      </div>
+
+      <!-- Free Tier (De-emphasized) -->
+      <div class="pricing-card de-emphasized">
+        <div>
+          <div class="pricing-title" style="font-size: 1.3rem;">Standard Access</div>
+          <div class="pricing-subtitle">Basic access for casual usage</div>
+          <div class="price-tag" style="font-size: 2.2rem; color: var(--text-muted);">$0 <span>/ basic</span></div>
+          <ul class="pricing-features" style="opacity: 0.85;">
+            <li>🌸 Access to standard features</li>
+            <li>🌸 Basic community access</li>
+          </ul>
+        </div>
+        <button id="openFreeModalBtn" class="btn-plan btn-plan-free">Get Started Free</button>
+      </div>
+
+    </div>
+
+    <!-- Expandable Accordion FAQ Section -->
+    <div class="section-header">
+      <h2>Frequently Asked Questions 🤔</h2>
+      <p>Click any question to reveal the answer!</p>
+    </div>
+
+    <div class="faq-container">
+      
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Are these apps really free to use? 🌸</span>
+          <span class="faq-icon">➕</span>
+        </button>
+        <div class="faq-answer-wrapper">
+          <div class="faq-answer">
+            Yes! All core features across the entire Pookie app suite are 100% free forever without hidden paywalls.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>What does the $1 support tier give me? 💖</span>
+          <span class="faq-icon">➕</span>
+        </button>
+        <div class="faq-answer-wrapper">
+          <div class="faq-answer">
+            Your $1 contribution directly covers server costs and keeps the apps running smoothly. In return, you get priority support, early access to new apps, and an official Supporter badge!
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Is my personal data kept safe and private? 🔒</span>
+          <span class="faq-icon">➕</span>
+        </button>
+        <div class="faq-answer-wrapper">
+          <div class="faq-answer">
+            Absolutely! We believe digital spaces should be safe and peaceful. We do not sell data or track personal information for advertising purposes.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          <span>Can I access PookiePixel apps on mobile devices? 📱</span>
+          <span class="faq-icon">➕</span>
+        </button>
+        <div class="faq-answer-wrapper">
+          <div class="faq-answer">
+            Yes! All tools are fully responsive web applications built to work seamlessly on modern smartphones, tablets, and desktop browsers.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Newsletter Card -->
+    <div class="newsletter-card">
+      <h3>Stay Updated! 💌</h3>
+      <p>Join our newsletter to get notified when new SaaS features or tools launch.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing! 💕');">
+        <input type="email" placeholder="Enter your email address..." required />
+        <button type="submit" class="btn-subscribe">Subscribe ✨</button>
+      </form>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer>
+      <ul class="footer-links">
+        <li><a href="https://github.com/pookiepixel" target="_blank">🐙 GitHub</a></li>
+        <li><a href="https://supportkori/tajimz" target="_blank">💖 Support Us ($1)</a></li>
+        <li><a href="#" onclick="alert('Privacy Policy: We respect your privacy! PookiePixel Studio does not sell your personal data.'); return false;">🔒 Privacy Policy</a></li>
+        <li><a href="#" onclick="alert('Terms of Service: PookiePixel apps are provided as-is with love and care for personal productivity use.'); return false;">📜 Terms of Service</a></li>
+      </ul>
+      <div class="footer-copy">
+        © PookiePixel Studio • Crafted with warmth and care 🌸<br>
+        Created by <a href="https://tajimz.xyz" target="_blank">Tajim</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- CONVERSION CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="freeModal">
+    <div class="modal-card">
+      <div class="modal-icon">🌸</div>
+      <div class="modal-title">Support Independent Devs?</div>
+      <div class="modal-desc">
+        PookiePixel Studio is maintained by an independent developer. For just <strong>$1</strong>, you can keep our servers running and unlock priority support!
+      </div>
+      <div class="modal-actions">
+        <a href="https://supportkori/tajimz" target="_blank" class="btn-modal-upgrade">Support $1 & Get Priority Access 💖</a>
+        <button class="btn-modal-free" id="confirmFreeBtn">Continue with basic free plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Accordion Logic
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        item.classList.toggle('active');
+        button.setAttribute('aria-expanded', !isExpanded);
+      });
+    });
+
+    // Modal Confirmation Logic
+    const openFreeModalBtn = document.getElementById('openFreeModalBtn');
+    const freeModal = document.getElementById('freeModal');
+    const confirmFreeBtn = document.getElementById('confirmFreeBtn');
+
+    openFreeModalBtn.addEventListener('click', () => {
+      freeModal.classList.add('active');
+    });
+
+    confirmFreeBtn.addEventListener('click', () => {
+      freeModal.classList.remove('active');
+      document.querySelector('#suite').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    freeModal.addEventListener('click', (e) => {
+      if (e.target === freeModal) {
+        freeModal.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>
